@@ -6,9 +6,19 @@ const userSchema = new Schema({
     type: String,
     unique: true
   },
-  password: String
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true, //always converts a text to lowercase before saving
+    trim: true //always removes leading+trailing whitespace
+  },
+  passwordHash: {
+    type: String,
+    required: true
+  }
 });
 
-const User = model("User", userSchema);
+const User = model("User", userSchema); //defining a User model
 
 module.exports = User;
